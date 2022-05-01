@@ -1,4 +1,6 @@
 import React from "react";
+import Tarjeta from "../Componentes/Tarjeta";
+import ListaContenido from "./Lista_Contenido";
 
 const Contenido = () => {
   return (
@@ -6,7 +8,7 @@ const Contenido = () => {
       className="Contenido"
       style={{ backgroundColor: "gray", height: "100vh", width: "100%" }}
     >
-      Contenido
+      <ListaContenido />
     </div>
   );
 };
