@@ -13,7 +13,6 @@ const ListaContenido = (props) => {
 
   return (
     <div className="listaContenido">
-      <h3>Lista contenido</h3>
       <Grid container spacing={1}>
         {listaPersonajes}
       </Grid>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Filtros from "./Filtros";
 import ListaContenido from "./Lista_Contenido";
 
 const Contenido = () => {
@@ -29,6 +30,7 @@ const Contenido = () => {
 
   return (
     <div className="Contenido" style={{ width: "100%" }}>
+      <Filtros />
       <ListaContenido personajes={personajes} />
     </div>
   );
