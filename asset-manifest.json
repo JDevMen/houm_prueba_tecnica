@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/houm_prueba_tecnica/static/css/main.073c9b0a.css",
+    "main.js": "/houm_prueba_tecnica/static/js/main.1fb74dd0.js",
+    "static/js/787.e8648009.chunk.js": "/houm_prueba_tecnica/static/js/787.e8648009.chunk.js",
+    "index.html": "/houm_prueba_tecnica/index.html",
+    "main.073c9b0a.css.map": "/houm_prueba_tecnica/static/css/main.073c9b0a.css.map",
+    "main.1fb74dd0.js.map": "/houm_prueba_tecnica/static/js/main.1fb74dd0.js.map",
+    "787.e8648009.chunk.js.map": "/houm_prueba_tecnica/static/js/787.e8648009.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.1fb74dd0.js"
+  ]
+}
