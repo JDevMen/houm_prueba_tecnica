@@ -17,29 +17,26 @@ const Tarjeta = (props) => {
   };
 
   return (
-    <div>
-      <Card sx={{ maxHeight: 300 }} onClick={handleClickOpen}>
-        <CardMedia
-          component="img"
-          height="150px"
-          image={`${props.personaje.thumbnail.path}/landscape_large.${props.personaje.thumbnail.extension}`}
-          alt="test image"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {props.personaje.name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {props.personaje.description}
-          </Typography>
-        </CardContent>
-      </Card>
+    <Card onClick={handleClickOpen}>
+      <CardMedia
+        component="img"
+        image={`${props.personaje.thumbnail.path}/landscape_incredible.${props.personaje.thumbnail.extension}`}
+        alt="test image"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {props.personaje.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {props.personaje.description}
+        </Typography>
+      </CardContent>
       <DetalleTarjeta
         open={open}
         onClose={handleClose}
         personaje={props.personaje}
       />
-    </div>
+    </Card>
   );
 };
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Filtros from "./Filtros";
 import ListaContenido from "./Lista_Contenido";
 import Paginacion from "../Componentes/Paginacion";
+import { Box } from "@mui/system";
 
 const Contenido = () => {
   // https://gateway.marvel.com:443/v1/public/characters?apikey=56fd90630e2f2542b0e3a0c8a054a107
@@ -71,7 +72,6 @@ const Contenido = () => {
   //Llamada a la api para obtener los datos
   useEffect(() => {
     if (isLoaded) {
-      console.log("entro a loaded");
       return;
     }
 
@@ -83,10 +83,8 @@ const Contenido = () => {
     };
 
     if (filtrando === "exact") {
-      console.log("entró a exact");
       if (nombreExacto !== "") paramsRequest.nameStartsWith = nombreExacto;
     } else if (filtrando === "filter") {
-      console.log("entró a filter");
       let filtro = {
         modifiedSince: filterParams.modificacionDesde,
         orderBy: filterParams.direccionOrdenamiento + filterParams.ordenarPor,
@@ -116,11 +114,19 @@ const Contenido = () => {
     isLoaded,
     nombreExacto,
     offset,
+    paginaActual,
     personajes.length,
+    resultadosPorPagina,
   ]);
 
   return (
-    <div className="Contenido" style={{ width: "100%" }}>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flexDirection="column"
+      padding="0.5rem"
+    >
       <Filtros
         nombreBusqueda={nombreExacto}
         buscarNombre={buscarNombreExactoHandler}
@@ -142,7 +148,7 @@ const Contenido = () => {
         totalResultados={totalResultados}
         cambiarOffset={cambiarPaginaHandler}
       />
-    </div>
+    </Box>
   );
 };
 
