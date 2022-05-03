@@ -15,7 +15,7 @@ const Contenido = () => {
   // MD5 hash: 9a309344f0bb59803e881e9d8529cd55
   const [totalResultados, setTotalResultados] = useState(0);
   const [offset, setOffset] = useState(0);
-  const [paginaActual, setPaginaActual] = useState(2);
+  const [paginaActual, setPaginaActual] = useState(1);
   const [resultadosPorPagina, setResultadosPorPagina] = useState(20);
   const [filtrando, setfiltrando] = useState("filter");
   const [personajes, setPersonajes] = useState([]);
