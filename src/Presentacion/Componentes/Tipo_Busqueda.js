@@ -7,7 +7,7 @@ const TipoBusqueda = (props) => {
       <FormLabel id="tipo-busqueda">Search type</FormLabel>
       <RadioGroup
         row
-        aria-labelledby="demo-row-radio-buttons-group-label"
+        aria-labelledby="tipo-busqueda"
         name="row-radio-buttons-group"
         value={props.tipo}
         onChange={(e) => props.tipoBusquedaHandler(e.target.value)}

@@ -3,8 +3,6 @@ import React from "react";
 import Tarjeta from "../Componentes/Tarjeta";
 
 const ListaContenido = (props) => {
-  console.log("personajes", props.personajes);
-
   const listaPersonajes = props.personajes.map((personaje) => (
     <Grid item xs={3}>
       <Tarjeta personaje={personaje} />

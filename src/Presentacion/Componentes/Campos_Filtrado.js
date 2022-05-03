@@ -13,49 +13,80 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
-const CamposFiltrado = () => {
-  const [value, setValue] = useState(null);
-  const [ordenamiento, setOrdenamiento] = useState("");
-
+const CamposFiltrado = (props) => {
+  const [empiezaCon, setEmpiezaCon] = useState("");
+  const [modificacionDesde, setModificacionDesde] = useState(null);
+  const [ordenarPor, setOrdenarPor] = useState("");
   const [direccionOrdenamiento, setDireccionOrdenamiento] = useState("");
 
+  const handleChangeEmpiezaCon = (event) => {
+    setEmpiezaCon(event.target.value);
+  };
+
+  const handleChangeModificacionDesde = (event) => {
+    const fechaElegida = new Date(event);
+
+    setModificacionDesde(fechaElegida);
+  };
+
   const handleChangeOrdenamiento = (event) => {
-    setOrdenamiento(event.target.value);
+    setOrdenarPor(event.target.value);
   };
 
   const handleDireccionOrdenamiento = (event, nuevaDireccion) => {
     setDireccionOrdenamiento(nuevaDireccion);
   };
 
+  const onClickFiltrar = () => {
+    props.filtrarPorParametros({
+      empiezaCon: empiezaCon,
+      modificacionDesde: modificacionDesde,
+      ordenarPor: ordenarPor,
+      direccionOrdenamiento: direccionOrdenamiento,
+    });
+  };
+
+  const onClickResetFiltrar = () => {
+    setEmpiezaCon("");
+    setModificacionDesde(null);
+    setOrdenarPor("");
+    setDireccionOrdenamiento("");
+    props.resetFiltros();
+  };
+
   return (
     <Grid container spacing={2}>
-      <Grid item xs={6}>
+      <Grid item xs={3}>
         <TextField
           id="outlined-basic"
           label="Starts with"
           variant="outlined"
           size="small"
+          value={empiezaCon}
+          onChange={(e) => handleChangeEmpiezaCon(e)}
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={3}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
+            disableFuture
             label="Modified since"
-            value={value}
-            onChange={(newValue) => {
-              setValue(newValue);
+            value={modificacionDesde}
+            inputFormat="dd/MM/yyyy"
+            onChange={(e) => {
+              handleChangeModificacionDesde(e);
             }}
             renderInput={(params) => <TextField size="small" {...params} />}
           />
         </LocalizationProvider>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={3}>
         <FormControl fullWidth>
           <InputLabel id="ordenamiento-select-label">Order by</InputLabel>
           <Select
             labelId="ordenamiento-select-label"
             id="ordenamiento-select"
-            value={ordenamiento}
+            value={ordenarPor}
             label="Order by"
             size="small"
             onChange={handleChangeOrdenamiento}
@@ -65,23 +96,30 @@ const CamposFiltrado = () => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={3}>
         <ToggleButtonGroup
           value={direccionOrdenamiento}
           exclusive
           onChange={handleDireccionOrdenamiento}
           aria-label="text alignment"
         >
-          <ToggleButton value="ascendente" aria-label="ascendente">
+          <ToggleButton value="" aria-label="ascendente">
             <ArrowUpwardIcon />
           </ToggleButton>
-          <ToggleButton value="descendente" aria-label="descendente">
+          <ToggleButton value="-" aria-label="descendente">
             <ArrowDownwardIcon />
           </ToggleButton>
         </ToggleButtonGroup>
       </Grid>
-      <Grid item xs={12}>
-        <Button variant="contained">Filter</Button>
+      <Grid item xs={6}>
+        <Button variant="contained" onClick={onClickFiltrar}>
+          Filter
+        </Button>
+      </Grid>
+      <Grid item xs={6}>
+        <Button variant="contained" onClick={onClickResetFiltrar}>
+          Reset filter
+        </Button>
       </Grid>
     </Grid>
   );
