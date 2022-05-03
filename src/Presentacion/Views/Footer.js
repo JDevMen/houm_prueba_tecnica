@@ -5,7 +5,6 @@ const Footer = () => {
     <div
       className="Footer"
       style={{
-        position: "fixed",
         bottom: "0",
         width: "100%",
         backgroundColor: "orangered",
