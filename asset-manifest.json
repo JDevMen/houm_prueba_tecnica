@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/houm_prueba_tecnica/static/css/main.073c9b0a.css",
-    "main.js": "/houm_prueba_tecnica/static/js/main.a0e94895.js",
+    "main.css": "/houm_prueba_tecnica/static/css/main.e6c13ad2.css",
+    "main.js": "/houm_prueba_tecnica/static/js/main.974606a5.js",
     "static/js/787.e8648009.chunk.js": "/houm_prueba_tecnica/static/js/787.e8648009.chunk.js",
     "index.html": "/houm_prueba_tecnica/index.html",
-    "main.073c9b0a.css.map": "/houm_prueba_tecnica/static/css/main.073c9b0a.css.map",
-    "main.a0e94895.js.map": "/houm_prueba_tecnica/static/js/main.a0e94895.js.map",
+    "main.e6c13ad2.css.map": "/houm_prueba_tecnica/static/css/main.e6c13ad2.css.map",
+    "main.974606a5.js.map": "/houm_prueba_tecnica/static/js/main.974606a5.js.map",
     "787.e8648009.chunk.js.map": "/houm_prueba_tecnica/static/js/787.e8648009.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.a0e94895.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.974606a5.js"
   ]
 }
