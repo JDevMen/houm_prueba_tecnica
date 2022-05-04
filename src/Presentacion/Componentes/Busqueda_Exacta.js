@@ -1,11 +1,10 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import React, { useState } from "react";
 
 const BusquedaExacta = (props) => {
   const [nombreExacto, setNombreExacto] = useState("");
 
   const onButtonPressedHandler = () => {
-    console.log("Entro a button pressed", nombreExacto);
     props.buscarNombreExacto(nombreExacto);
   };
 
@@ -18,22 +17,30 @@ const BusquedaExacta = (props) => {
   };
 
   return (
-    <div>
-      <TextField
-        id="outlined-basic"
-        label="Exact name"
-        variant="outlined"
-        size="small"
-        value={props.nombreExacto}
-        onChange={(e) => onChangeTextField(e.target.value)}
-      />
-      <Button variant="contained" onClick={onButtonPressedHandler}>
-        Search
-      </Button>
-      <Button variant="contained" onClick={onResetSearchHandler}>
-        Reset search
-      </Button>
-    </div>
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <TextField
+          id="outlined-basic"
+          label="Exact name"
+          variant="outlined"
+          size="small"
+          style={{ minWidth: "100%" }}
+          color="primary"
+          value={props.nombreExacto}
+          onChange={(e) => onChangeTextField(e.target.value)}
+        />
+      </Grid>
+      <Grid item xs={6}>
+        <Button variant="outlined" onClick={onButtonPressedHandler}>
+          Search
+        </Button>
+      </Grid>
+      <Grid item xs={6}>
+        <Button variant="outlined" onClick={onResetSearchHandler}>
+          Reset search
+        </Button>
+      </Grid>
+    </Grid>
   );
 };
 

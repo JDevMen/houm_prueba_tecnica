@@ -1,4 +1,5 @@
-import { FormControl } from "@mui/material";
+import { FormControl, Grid } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 import BusquedaExacta from "../Componentes/Busqueda_Exacta";
 import CamposFiltrado from "../Componentes/Campos_Filtrado";
@@ -6,7 +7,6 @@ import TipoBusqueda from "../Componentes/Tipo_Busqueda";
 
 const Filtros = (props) => {
   const tipoBusquedaHandler = (e) => {
-    console.log("handler", e);
     props.cambiarTipoFiltro(e);
   };
 
@@ -30,13 +30,29 @@ const Filtros = (props) => {
   };
 
   return (
-    <FormControl fullWidth>
-      <TipoBusqueda
-        tipo={props.tipoFiltro}
-        tipoBusquedaHandler={tipoBusquedaHandler}
-      />
-      <FilterSearch />
-    </FormControl>
+    <Box
+      sx={{
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+        textAlign: "center",
+      }}
+    >
+      <Grid container>
+        <Grid item xs={12}>
+          <TipoBusqueda
+            tipo={props.tipoFiltro}
+            tipoBusquedaHandler={tipoBusquedaHandler}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl>
+            <FilterSearch />
+          </FormControl>
+        </Grid>
+        <Grid item></Grid>
+      </Grid>
+    </Box>
   );
 };
 

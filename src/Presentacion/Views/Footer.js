@@ -7,10 +7,10 @@ const Footer = () => {
       style={{
         bottom: "0",
         width: "100%",
-        backgroundColor: "orangered",
+        backgroundColor: "#ff452b",
       }}
     >
-      Footer
+      Data provided by Marvel. © 2014 Marvel
     </div>
   );
 };

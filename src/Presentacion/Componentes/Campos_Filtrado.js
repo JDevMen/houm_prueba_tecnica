@@ -56,7 +56,7 @@ const CamposFiltrado = (props) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={6} md={3}>
         <TextField
           id="outlined-basic"
           label="Starts with"
@@ -64,9 +64,10 @@ const CamposFiltrado = (props) => {
           size="small"
           value={empiezaCon}
           onChange={(e) => handleChangeEmpiezaCon(e)}
+          style={{ minWidth: "100%" }}
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={6} md={3}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             disableFuture
@@ -76,12 +77,18 @@ const CamposFiltrado = (props) => {
             onChange={(e) => {
               handleChangeModificacionDesde(e);
             }}
-            renderInput={(params) => <TextField size="small" {...params} />}
+            renderInput={(params) => (
+              <TextField
+                size="small"
+                style={{ minWidth: "100%" }}
+                {...params}
+              />
+            )}
           />
         </LocalizationProvider>
       </Grid>
-      <Grid item xs={3}>
-        <FormControl fullWidth>
+      <Grid item xs={12} sm={6} md={3}>
+        <FormControl fullWidth size="small">
           <InputLabel id="ordenamiento-select-label">Order by</InputLabel>
           <Select
             labelId="ordenamiento-select-label"
@@ -96,12 +103,14 @@ const CamposFiltrado = (props) => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={6} md={3}>
         <ToggleButtonGroup
           value={direccionOrdenamiento}
           exclusive
+          size="small"
           onChange={handleDireccionOrdenamiento}
           aria-label="text alignment"
+          color="primary"
         >
           <ToggleButton value="" aria-label="ascendente">
             <ArrowUpwardIcon />
@@ -112,12 +121,12 @@ const CamposFiltrado = (props) => {
         </ToggleButtonGroup>
       </Grid>
       <Grid item xs={6}>
-        <Button variant="contained" onClick={onClickFiltrar}>
+        <Button variant="outlined" onClick={onClickFiltrar}>
           Filter
         </Button>
       </Grid>
       <Grid item xs={6}>
-        <Button variant="contained" onClick={onClickResetFiltrar}>
+        <Button variant="outlined" onClick={onClickResetFiltrar}>
           Reset filter
         </Button>
       </Grid>

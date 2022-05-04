@@ -1,9 +1,15 @@
-import { FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
+import {
+  Box,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import React from "react";
 
 const TipoBusqueda = (props) => {
   return (
-    <div>
+    <Box>
       <FormLabel id="tipo-busqueda">Search type</FormLabel>
       <RadioGroup
         row
@@ -15,7 +21,7 @@ const TipoBusqueda = (props) => {
         <FormControlLabel value="filter" control={<Radio />} label="Filter" />
         <FormControlLabel value="exact" control={<Radio />} label="Exact" />
       </RadioGroup>
-    </div>
+    </Box>
   );
 };
 

@@ -11,8 +11,12 @@ const Paginacion = (props) => {
       showFirstButton
       showLastButton
       page={props.paginaActual}
+      size="large"
       count={Math.floor(props.totalResultados / props.resultadosPorPagina)}
       onChange={handleChangePage}
+      style={{ padding: "0.5rem" }}
+      shape="rounded"
+      color="primary"
     />
   );
 };
