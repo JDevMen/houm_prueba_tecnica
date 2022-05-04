@@ -4,7 +4,14 @@ import Tarjeta from "../Componentes/Tarjeta";
 
 const ListaContenido = (props) => {
   const listaPersonajes = props.personajes.map((personaje) => (
-    <Grid item xs={6} md={3} lg={2.4} style={{ display: "flex" }}>
+    <Grid
+      item
+      key={personaje.id}
+      xs={6}
+      md={3}
+      lg={2.4}
+      style={{ display: "flex" }}
+    >
       <Tarjeta personaje={personaje} />
     </Grid>
   ));

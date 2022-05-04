@@ -1,85 +1,86 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Filtros from "./Filtros";
-import ListaContenido from "./Lista_Contenido";
-import Paginacion from "../Componentes/Paginacion";
+import ContentList from "./Lista_Contenido";
+import PaginationComponent from "../Componentes/Paginacion";
 import { Box } from "@mui/system";
 import { CircularProgress } from "@mui/material";
 
-const Contenido = () => {
-  // https://gateway.marvel.com:443/v1/public/characters?apikey=56fd90630e2f2542b0e3a0c8a054a107
-
-  // key privada: da24d53d41767d34e7cdd355201d79d7f2f3f07f
-  // key pública: 56fd90630e2f2542b0e3a0c8a054a107
-
-  // key completa: 1da24d53d41767d34e7cdd355201d79d7f2f3f07f56fd90630e2f2542b0e3a0c8a054a107
-
-  // MD5 hash: 9a309344f0bb59803e881e9d8529cd55
-  const [totalResultados, setTotalResultados] = useState(0);
+//Contenido de la página web
+const Content = () => {
+  const [totalResults, setTotalResults] = useState(0);
   const [offset, setOffset] = useState(0);
-  const [paginaActual, setPaginaActual] = useState(1);
-  const [resultadosPorPagina] = useState(20);
-  const [filtrando, setfiltrando] = useState("filter");
-  const [personajes, setPersonajes] = useState([]);
-  const [nombreExacto, setNombreExacto] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [resultsPerPage] = useState(20);
+  const [filtering, setFiltering] = useState("filter");
+  const [characters, setCharacters] = useState([]);
+  const [exactName, setExactName] = useState("");
   const [filterParams, setFilterParams] = useState({
-    empiezaCon: "",
-    modificacionDesde: null,
-    ordenarPor: "",
-    direccionOrdenamiento: "",
+    startsWith: "",
+    modifiedSince: null,
+    orderBy: "",
+    orderDirection: "",
   });
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const buscarNombreExactoHandler = (e) => {
-    setNombreExacto(e);
-    setPaginaActual(1);
-    console.log("nombre exacto", nombreExacto);
+  //Handler para buscar por el nombre exacto
+  const searchExactNameHandler = (e) => {
+    setExactName(e);
+    setCurrentPage(1);
     setIsLoaded(false);
   };
 
-  const filtrarPorParametrosHandler = (params) => {
+  //Handler para filtar por los parámetros
+  const filterByParametersHandler = (params) => {
     setFilterParams(params);
-    setPaginaActual(1);
+    setCurrentPage(1);
     setIsLoaded(false);
   };
 
-  const cambiarPaginaHandler = (pPagina) => {
-    setPaginaActual(pPagina);
-    setOffset(pPagina * resultadosPorPagina);
+  //Handler para la paginación
+  const changePageHandler = (pPagina) => {
+    setCurrentPage(pPagina);
+    setOffset(pPagina * resultsPerPage);
     setIsLoaded(false);
   };
 
-  const cambiarBusquedaHandler = (pFiltrando) => {
-    setfiltrando(pFiltrando);
-    setNombreExacto("");
+  //Cambiar tipo de búsqueda entre exacta y filtro
+  const changeSearchHandler = (pFiltrando) => {
+    setFiltering(pFiltrando);
+    setExactName("");
     setFilterParams({
-      empiezaCon: "",
-      modificacionDesde: null,
-      ordenarPor: "",
-      direccionOrdenamiento: "",
+      startsWith: "",
+      modifiedSince: null,
+      orderBy: "",
+      orderDirection: "",
     });
   };
 
-  const resetFiltrosHandler = () => {
-    setNombreExacto("");
+  //Handler para reiniciar los filtros completamente y
+  //volver a la página 1
+  const resetFiltersHandler = () => {
+    setExactName("");
     setFilterParams({
-      empiezaCon: "",
-      modificacionDesde: null,
-      ordenarPor: "",
-      direccionOrdenamiento: "",
+      startsWith: "",
+      modifiedSince: null,
+      orderBy: "",
+      orderDirection: "",
     });
-    setPaginaActual(1);
+    setCurrentPage(1);
     setIsLoaded(false);
   };
 
-  const Contenido = () => {
+  //Mostrar lista de resultados o anillo de carga mientras
+  //se hace la carga
+  const Content = () => {
     if (!isLoaded) {
       return <CircularProgress color="secondary" />;
     } else {
-      return <ListaContenido personajes={personajes} />;
+      return <ContentList personajes={characters} />;
     }
   };
 
+  //Variables de la petición a la API
   const baseUrlApi = "https://gateway.marvel.com:443/v1/public/characters";
   const ts = "1";
 
@@ -93,19 +94,19 @@ const Contenido = () => {
       ts: ts,
       apikey: apikey,
       hash: hash,
-      offset: resultadosPorPagina * (paginaActual - 1),
+      offset: resultsPerPage * (currentPage - 1),
     };
 
-    if (filtrando === "exact") {
-      if (nombreExacto !== "") paramsRequest.nameStartsWith = nombreExacto;
-    } else if (filtrando === "filter") {
+    if (filtering === "exact") {
+      if (exactName !== "") paramsRequest.nameStartsWith = exactName;
+    } else if (filtering === "filter") {
       let filtro = {
-        modifiedSince: filterParams.modificacionDesde,
-        orderBy: filterParams.direccionOrdenamiento + filterParams.ordenarPor,
+        modifiedSince: filterParams.modifiedSince,
+        orderBy: filterParams.orderDirection + filterParams.orderBy,
       };
 
-      if (filterParams.empiezaCon !== "")
-        filtro.nameStartsWith = filterParams.empiezaCon;
+      if (filterParams.startsWith !== "")
+        filtro.nameStartsWith = filterParams.startsWith;
 
       Object.assign(paramsRequest, filtro);
     }
@@ -115,19 +116,21 @@ const Contenido = () => {
         params: paramsRequest,
       })
       .then((resp) => {
-        setPersonajes(resp.data.data.results);
-        setTotalResultados(resp.data.data.total);
+        setCharacters(resp.data.data.results);
+        setTotalResults(resp.data.data.total);
         setIsLoaded(true);
       });
   }, [
-    // filtrando,
-    // filterParams,
-    // nombreExacto,
+    //Nota de desarrollador:
+    //La arquitectura actual genera advertencia de ESlint
+    //por falta de dependencias. Sin embargo, el agregar dichas dependencias
+    //genera un comportamiento no esperado en la app, por lo cual
+    //se decide dejar la advertencia hasta hacer los ajustes de arquitectura.
     isLoaded,
     offset,
-    paginaActual,
-    personajes.length,
-    resultadosPorPagina,
+    currentPage,
+    characters.length,
+    resultsPerPage,
   ]);
 
   return (
@@ -140,29 +143,27 @@ const Contenido = () => {
       paddingBottom="0rem"
     >
       <Filtros
-        nombreBusqueda={nombreExacto}
-        setNombreBusqueda={setNombreExacto}
-        buscarNombre={buscarNombreExactoHandler}
-        filtrarPor={filtrarPorParametrosHandler}
-        tipoFiltro={filtrando}
-        cambiarTipoFiltro={cambiarBusquedaHandler}
-        resetFiltros={resetFiltrosHandler}
+        searchExactNameHandler={searchExactNameHandler}
+        filterByParametersHandler={filterByParametersHandler}
+        filterType={filtering}
+        changeSearchHandler={changeSearchHandler}
+        resetFiltersHandler={resetFiltersHandler}
       />
-      <Paginacion
-        paginaActual={paginaActual}
-        resultadosPorPagina={resultadosPorPagina}
-        totalResultados={totalResultados}
-        cambiarOffset={cambiarPaginaHandler}
+      <PaginationComponent
+        currentPage={currentPage}
+        resultsPerPage={resultsPerPage}
+        totalResults={totalResults}
+        changePageHandler={changePageHandler}
       />
-      <Contenido />
-      <Paginacion
-        paginaActual={paginaActual}
-        resultadosPorPagina={resultadosPorPagina}
-        totalResultados={totalResultados}
-        cambiarOffset={cambiarPaginaHandler}
+      <Content />
+      <PaginationComponent
+        currentPage={currentPage}
+        resultsPerPage={resultsPerPage}
+        totalResults={totalResults}
+        changePageHandler={changePageHandler}
       />
     </Box>
   );
 };
 
-export default Contenido;
+export default Content;

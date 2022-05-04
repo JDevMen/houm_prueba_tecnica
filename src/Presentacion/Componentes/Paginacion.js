@@ -1,18 +1,18 @@
 import { Pagination } from "@mui/material";
 import React from "react";
 
-const Paginacion = (props) => {
+const PaginationComponent = (props) => {
   const handleChangePage = (event, newPage) => {
-    props.cambiarOffset(newPage);
+    props.changePageHandler(newPage);
   };
 
   return (
     <Pagination
       showFirstButton
       showLastButton
-      page={props.paginaActual}
+      page={props.currentPage}
       size="large"
-      count={Math.floor(props.totalResultados / props.resultadosPorPagina)}
+      count={Math.floor(props.totalResults / props.resultsPerPage)}
       onChange={handleChangePage}
       style={{ padding: "0.5rem" }}
       shape="rounded"
@@ -21,4 +21,4 @@ const Paginacion = (props) => {
   );
 };
 
-export default Paginacion;
+export default PaginationComponent;

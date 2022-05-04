@@ -1,9 +1,10 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import React from "react";
 
-const Cabecera = () => {
+//Cabecero de la página
+const Header = () => {
   return (
-    <div className="cabecera">
+    <div className="header">
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ alignItems: "center" }}>
           <Toolbar>
@@ -25,4 +26,4 @@ const Cabecera = () => {
   );
 };
 
-export default Cabecera;
+export default Header;

@@ -1,19 +1,20 @@
 import { Button, Grid, TextField } from "@mui/material";
 import React, { useState } from "react";
 
-const BusquedaExacta = (props) => {
-  const [nombreExacto, setNombreExacto] = useState("");
+const ExactSearch = (props) => {
+  const [exactName, setExactName] = useState("");
 
   const onButtonPressedHandler = () => {
-    props.buscarNombreExacto(nombreExacto);
+    props.searchExactNameHandler(exactName);
   };
 
   const onResetSearchHandler = () => {
-    props.resetFiltros();
+    setExactName("");
+    props.resetFiltersHandler();
   };
 
   const onChangeTextField = (e) => {
-    setNombreExacto(e);
+    setExactName(e);
   };
 
   return (
@@ -26,7 +27,7 @@ const BusquedaExacta = (props) => {
           size="small"
           style={{ minWidth: "100%" }}
           color="primary"
-          value={props.nombreExacto}
+          value={exactName}
           onChange={(e) => onChangeTextField(e.target.value)}
         />
       </Grid>
@@ -44,4 +45,4 @@ const BusquedaExacta = (props) => {
   );
 };
 
-export default BusquedaExacta;
+export default ExactSearch;

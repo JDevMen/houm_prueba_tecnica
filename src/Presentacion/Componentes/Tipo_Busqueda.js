@@ -1,21 +1,14 @@
-import {
-  Box,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
+import { Box, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import React from "react";
 
-const TipoBusqueda = (props) => {
+const SearchType = (props) => {
   return (
     <Box>
       <RadioGroup
         row
-        aria-labelledby="tipo-busqueda"
         name="row-radio-buttons-group"
-        value={props.tipo}
-        onChange={(e) => props.tipoBusquedaHandler(e.target.value)}
+        value={props.filterType}
+        onChange={(e) => props.changeSearchHandler(e.target.value)}
       >
         <FormControlLabel value="filter" control={<Radio />} label="Filter" />
         <FormControlLabel value="exact" control={<Radio />} label="Exact" />
@@ -24,4 +17,4 @@ const TipoBusqueda = (props) => {
   );
 };
 
-export default TipoBusqueda;
+export default SearchType;

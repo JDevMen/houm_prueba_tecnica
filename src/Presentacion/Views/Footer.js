@@ -1,5 +1,7 @@
 import React from "react";
 
+//Pie de página obligatorio por derechos de autor de la API
+//de Marvel
 const Footer = () => {
   return (
     <div
