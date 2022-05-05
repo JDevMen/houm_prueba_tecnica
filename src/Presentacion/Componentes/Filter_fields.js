@@ -13,95 +13,104 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
-const CamposFiltrado = (props) => {
-  const [empiezaCon, setEmpiezaCon] = useState("");
-  const [modificacionDesde, setModificacionDesde] = useState(null);
-  const [ordenarPor, setOrdenarPor] = useState("");
-  const [direccionOrdenamiento, setDireccionOrdenamiento] = useState("");
+const FilteringFields = (props) => {
+  const [startsWith, setStartsWith] = useState("");
+  const [modifiedSince, setmodifiedSince] = useState(null);
+  const [orderBy, setOrderBy] = useState("");
+  const [orderDirection, setOrderDirection] = useState("");
 
-  const handleChangeEmpiezaCon = (event) => {
-    setEmpiezaCon(event.target.value);
+  const handleChangeStartsWith = (event) => {
+    setStartsWith(event.target.value);
   };
 
-  const handleChangeModificacionDesde = (event) => {
-    const fechaElegida = new Date(event);
+  const handleChangeModifiedSince = (event) => {
+    const chosenDate = new Date(event);
 
-    setModificacionDesde(fechaElegida);
+    setmodifiedSince(chosenDate);
   };
 
-  const handleChangeOrdenamiento = (event) => {
-    setOrdenarPor(event.target.value);
+  const handleChangeOrder = (event) => {
+    setOrderBy(event.target.value);
   };
 
-  const handleDireccionOrdenamiento = (event, nuevaDireccion) => {
-    setDireccionOrdenamiento(nuevaDireccion);
+  const handleOrderDirection = (event, newDirection) => {
+    setOrderDirection(newDirection);
   };
 
   const onClickFiltrar = () => {
-    props.filtrarPorParametros({
-      empiezaCon: empiezaCon,
-      modificacionDesde: modificacionDesde,
-      ordenarPor: ordenarPor,
-      direccionOrdenamiento: direccionOrdenamiento,
+    props.filterByParametersHandler({
+      startsWith: startsWith,
+      modifiedSince: modifiedSince,
+      orderBy: orderBy,
+      orderDirection: orderDirection,
     });
   };
 
-  const onClickResetFiltrar = () => {
-    setEmpiezaCon("");
-    setModificacionDesde(null);
-    setOrdenarPor("");
-    setDireccionOrdenamiento("");
-    props.resetFiltros();
+  const onClickResetFilter = () => {
+    setStartsWith("");
+    setmodifiedSince(null);
+    setOrderBy("");
+    setOrderDirection("");
+    props.resetFiltersHandler();
   };
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={6} md={3}>
         <TextField
           id="outlined-basic"
           label="Starts with"
           variant="outlined"
           size="small"
-          value={empiezaCon}
-          onChange={(e) => handleChangeEmpiezaCon(e)}
+          value={startsWith}
+          onChange={(e) => handleChangeStartsWith(e)}
+          style={{ minWidth: "100%" }}
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={6} md={3}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             disableFuture
             label="Modified since"
-            value={modificacionDesde}
+            value={modifiedSince}
             inputFormat="dd/MM/yyyy"
             onChange={(e) => {
-              handleChangeModificacionDesde(e);
+              handleChangeModifiedSince(e);
             }}
-            renderInput={(params) => <TextField size="small" {...params} />}
+            renderInput={(params) => (
+              <TextField
+                size="small"
+                style={{ minWidth: "100%" }}
+                {...params}
+              />
+            )}
           />
         </LocalizationProvider>
       </Grid>
-      <Grid item xs={3}>
-        <FormControl fullWidth>
-          <InputLabel id="ordenamiento-select-label">Order by</InputLabel>
+      <Grid item xs={12} sm={6} md={3}>
+        <FormControl fullWidth size="small">
+          <InputLabel id="order-select-label">Order by</InputLabel>
           <Select
-            labelId="ordenamiento-select-label"
-            id="ordenamiento-select"
-            value={ordenarPor}
+            labelId="order-select-label"
+            id="order-select"
+            value={orderBy}
             label="Order by"
             size="small"
-            onChange={handleChangeOrdenamiento}
+            onChange={handleChangeOrder}
           >
             <MenuItem value={"name"}>Name</MenuItem>
             <MenuItem value={"modified"}>Modified since</MenuItem>
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={12} sm={6} md={3}>
         <ToggleButtonGroup
-          value={direccionOrdenamiento}
+          value={orderDirection}
           exclusive
-          onChange={handleDireccionOrdenamiento}
+          size="small"
+          onChange={handleOrderDirection}
           aria-label="text alignment"
+          color="primary"
         >
           <ToggleButton value="" aria-label="ascendente">
             <ArrowUpwardIcon />
@@ -112,12 +121,12 @@ const CamposFiltrado = (props) => {
         </ToggleButtonGroup>
       </Grid>
       <Grid item xs={6}>
-        <Button variant="contained" onClick={onClickFiltrar}>
+        <Button variant="outlined" onClick={onClickFiltrar}>
           Filter
         </Button>
       </Grid>
       <Grid item xs={6}>
-        <Button variant="contained" onClick={onClickResetFiltrar}>
+        <Button variant="outlined" onClick={onClickResetFilter}>
           Reset filter
         </Button>
       </Grid>
@@ -125,4 +134,4 @@ const CamposFiltrado = (props) => {
   );
 };
 
-export default CamposFiltrado;
+export default FilteringFields;

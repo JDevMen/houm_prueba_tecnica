@@ -1,5 +1,7 @@
 import React from "react";
 
+//Pie de página obligatorio por derechos de autor de la API
+//de Marvel
 const Footer = () => {
   return (
     <div
@@ -7,10 +9,10 @@ const Footer = () => {
       style={{
         bottom: "0",
         width: "100%",
-        backgroundColor: "orangered",
+        backgroundColor: "#ff452b",
       }}
     >
-      Footer
+      Data provided by Marvel. © 2014 Marvel
     </div>
   );
 };
