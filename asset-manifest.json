@@ -1,15 +1,13 @@
 {
   "files": {
     "main.css": "/houm_prueba_tecnica/static/css/main.e6c13ad2.css",
-    "main.js": "/houm_prueba_tecnica/static/js/main.61e92e34.js",
-    "static/js/787.e8648009.chunk.js": "/houm_prueba_tecnica/static/js/787.e8648009.chunk.js",
+    "main.js": "/houm_prueba_tecnica/static/js/main.cd7a660e.js",
     "index.html": "/houm_prueba_tecnica/index.html",
     "main.e6c13ad2.css.map": "/houm_prueba_tecnica/static/css/main.e6c13ad2.css.map",
-    "main.61e92e34.js.map": "/houm_prueba_tecnica/static/js/main.61e92e34.js.map",
-    "787.e8648009.chunk.js.map": "/houm_prueba_tecnica/static/js/787.e8648009.chunk.js.map"
+    "main.cd7a660e.js.map": "/houm_prueba_tecnica/static/js/main.cd7a660e.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.61e92e34.js"
+    "static/js/main.cd7a660e.js"
   ]
 }
