@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Cabecera from "../Views/Cabecera";
+import Header from "../Views/Header";
 
 const NotFound = () => (
   <div>
-    <Cabecera />
+    <Header />
     <h1>404 - Not Found!</h1>
     <Link to="houm_prueba_tecnica/">Go Home</Link>
   </div>

@@ -1,6 +1,6 @@
 import "./App.css";
-import Header from "./Presentacion/Views/Cabecera";
-import Content from "./Presentacion/Views/Contenido";
+import Header from "./Presentacion/Views/Header";
+import Content from "./Presentacion/Views/Content";
 import Footer from "./Presentacion/Views/Footer";
 
 function App() {

@@ -1,11 +1,11 @@
 import { FormControl, Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import ExactSearch from "../Componentes/Busqueda_Exacta";
-import FilteringFields from "../Componentes/Campos_Filtrado";
-import SearchType from "../Componentes/Tipo_Busqueda";
+import ExactSearch from "../Componentes/Exact_search";
+import FilteringFields from "../Componentes/Filter_fields";
+import SearchType from "../Componentes/Search_type";
 
-const Filtros = (props) => {
+const Filters = (props) => {
   const tipoBusquedaHandler = (e) => {
     props.changeSearchHandler(e);
   };
@@ -47,4 +47,4 @@ const Filtros = (props) => {
   );
 };
 
-export default Filtros;
+export default Filters;

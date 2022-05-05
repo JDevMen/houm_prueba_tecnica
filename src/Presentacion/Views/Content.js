@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Filtros from "./Filtros";
-import ContentList from "./Lista_Contenido";
-import PaginationComponent from "../Componentes/Paginacion";
+import Filters from "./Filters";
+import ContentList from "./Content_List";
+import PaginationComponent from "../Componentes/Pagination";
 import { Box } from "@mui/system";
 import { CircularProgress } from "@mui/material";
 
@@ -76,7 +76,7 @@ const Content = () => {
     if (!isLoaded) {
       return <CircularProgress color="secondary" />;
     } else {
-      return <ContentList personajes={characters} />;
+      return <ContentList characters={characters} />;
     }
   };
 
@@ -142,7 +142,7 @@ const Content = () => {
       padding="0.5rem"
       paddingBottom="0rem"
     >
-      <Filtros
+      <Filters
         searchExactNameHandler={searchExactNameHandler}
         filterByParametersHandler={filterByParametersHandler}
         filterType={filtering}

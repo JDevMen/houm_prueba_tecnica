@@ -3,10 +3,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import DetalleTarjeta from "./Detalle_tarjeta";
+import DetalleTarjeta from "./Card_detail";
 import { Box } from "@mui/system";
 
-const Tarjeta = (props) => {
+const CardComponent = (props) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -32,31 +32,31 @@ const Tarjeta = (props) => {
       >
         <CardMedia
           component="img"
-          image={`${props.personaje.thumbnail.path}/landscape_incredible.${props.personaje.thumbnail.extension}`}
+          image={`${props.character.thumbnail.path}/landscape_incredible.${props.character.thumbnail.extension}`}
           alt="test image"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {props.personaje.name}
+            {props.character.name}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            <b> # of comics</b> {props.personaje.comics.available}
+            <b> # of comics</b> {props.character.comics.available}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            <b> # series</b> {props.personaje.series.available}
+            <b> # series</b> {props.character.series.available}
           </Typography>
           <Typography gutterBottom variant="body1" component="div">
-            <b> # of stories appearances</b> {props.personaje.stories.available}
+            <b> # of stories appearances</b> {props.character.stories.available}
           </Typography>
         </CardContent>
       </Card>
       <DetalleTarjeta
         open={open}
         onClose={handleClose}
-        personaje={props.personaje}
+        character={props.character}
       />
     </Box>
   );
 };
 
-export default Tarjeta;
+export default CardComponent;

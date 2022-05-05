@@ -13,7 +13,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const DetalleTarjeta = (props) => {
-  const { onClose, open, personaje } = props;
+  const { onClose, open, character } = props;
 
   const handleClose = () => {
     onClose();
@@ -21,30 +21,30 @@ const DetalleTarjeta = (props) => {
 
   return (
     <Dialog open={open} onClose={handleClose} TransitionComponent={Transition}>
-      <DialogTitle>{personaje.name}</DialogTitle>
+      <DialogTitle>{character.name}</DialogTitle>
       <DialogContent>
         <Grid container spacing={1}>
           <Grid item xs={12} sm={6}>
             <img
-              src={`${props.personaje.thumbnail.path}/landscape_amazing.${props.personaje.thumbnail.extension}`}
+              src={`${character.thumbnail.path}/landscape_amazing.${character.thumbnail.extension}`}
               alt="imagenDetalleTarjeta"
               style={{ maxWidth: "100%" }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Typography gutterBottom variant="body1" component="div">
-              <b> # of comics</b> {personaje.comics.available}
+              <b> # of comics</b> {character.comics.available}
             </Typography>
             <Typography gutterBottom variant="body1" component="div">
-              <b> # series</b> {personaje.series.available}
+              <b> # series</b> {character.series.available}
             </Typography>
             <Typography gutterBottom variant="body1" component="div">
-              <b> # of stories appearances</b> {personaje.stories.available}
+              <b> # of stories appearances</b> {character.stories.available}
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography gutterBottom variant="body1" component="div">
-              {personaje.description}
+              {character.description}
             </Typography>
           </Grid>
         </Grid>
